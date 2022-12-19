@@ -1,10 +1,11 @@
-import { View, Text } from "react-native";
 import React from "react";
+import logoImg from "../../assets/logo.png";
+import { Container, Logo } from "./styles";
 
 export default function Home() {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <Container>
+      <Logo source={logoImg} />
+    </Container>
   );
 }
