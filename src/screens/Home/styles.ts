@@ -34,3 +34,5 @@ export const Quantity = styled.Text`
   `}
   margin-bottom: 2px;
 `;
+
+export const AddMeal = styled.View``;
