@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useTheme } from "styled-components/native";
 import logoImg from "../../assets/logo.png";
@@ -11,7 +12,6 @@ import {
   Logo,
   MealsList,
   Open,
-  Quantity,
   SectionFooterSeparator,
   SectionTitle,
   Statistic,
@@ -19,6 +19,7 @@ import {
 
 export default function Home() {
   const { COLORS, FONT_SIZE } = useTheme();
+  const navigation = useNavigation();
 
   const DATA = [
     {
@@ -49,11 +50,13 @@ export default function Home() {
     <>
       <Logo source={logoImg} />
 
-      <Statistic>
+      <Statistic onPress={() => navigation.navigate("statistics")}>
         <Open>
           <Ionicons name="open-outline" size={24} color={COLORS.green_dark} />
         </Open>
-        <Quantity>90,86%</Quantity>
+        <Label size={FONT_SIZE.XG} color={COLORS.gray_100} mb={2} bold>
+          90,86%
+        </Label>
         <Label size={FONT_SIZE.SM}>das refeições dentro da dieta</Label>
       </Statistic>
 

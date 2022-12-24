@@ -28,15 +28,6 @@ export const Open = styled.TouchableOpacity`
   right: 8px;
 `;
 
-export const Quantity = styled.Text`
-  ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.XG}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.gray_100};
-  `}
-  margin-bottom: 2px;
-`;
-
 export const AddMeal = styled.View`
   margin-bottom: 32px;
 `;
