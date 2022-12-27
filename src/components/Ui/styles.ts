@@ -19,3 +19,14 @@ export const Label = styled(Text)<Props>`
   margin-top: ${({ mt }) => mt || 0}px;
   margin-bottom: ${({ mb }) => mb || 0}px;
 `;
+
+export const RoundedContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  padding: 32px 24px;
+  background-color: ${({ theme }) => theme.COLORS.white};
+  margin-top: 24px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`;
