@@ -2,7 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useTheme } from "styled-components/native";
-import { Label } from "../../components/Ui/styles";
+import { Label, RoundedContainer } from "../../components/Ui/styles";
 import { Card, Container, Diet, GoBack, Stats } from "./styles";
 
 export default function Statistics() {
@@ -14,12 +14,15 @@ export default function Statistics() {
       <GoBack onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color={COLORS.green_dark} />
       </GoBack>
-      <Label size={FONT_SIZE.XG} color={COLORS.gray_100} mt={8} mb={2} bold>
-        90,86%
-      </Label>
-      <Label size={FONT_SIZE.SM}>das refeições dentro da dieta</Label>
 
       <Stats>
+        <Label size={FONT_SIZE.XG} color={COLORS.gray_100} mt={8} mb={2} bold>
+          90,86%
+        </Label>
+        <Label size={FONT_SIZE.SM}>das refeições dentro da dieta</Label>
+      </Stats>
+
+      <RoundedContainer>
         <Label size={FONT_SIZE.SM} color={COLORS.gray_100} mb={24} bold>
           Estatísticas gerais
         </Label>
@@ -59,7 +62,7 @@ export default function Statistics() {
             </Label>
           </Card>
         </Diet>
-      </Stats>
+      </RoundedContainer>
     </Container>
   );
 }

@@ -19,14 +19,8 @@ export const GoBack = styled.TouchableOpacity`
 `;
 
 export const Stats = styled.View`
-  flex: 1;
-  width: 100%;
   align-items: center;
-  padding: 32px 24px;
-  background-color: ${({ theme }) => theme.COLORS.white};
-  margin-top: 32px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-bottom: 8px;
 `;
 
 export const Card = styled.View<CardProps>`

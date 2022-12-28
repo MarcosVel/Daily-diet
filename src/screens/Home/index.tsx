@@ -64,7 +64,11 @@ export default function Home() {
         <Label mb={8} color={COLORS.gray_100}>
           Refeições
         </Label>
-        <Button title="Nova refeição" icon="plus" />
+        <Button
+          title="Nova refeição"
+          icon="plus"
+          onPress={() => navigation.navigate("newMeal")}
+        />
       </AddMeal>
     </>
   );
