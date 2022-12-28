@@ -9,6 +9,7 @@ export type TypeProps = {
 
 export const Container = styled.View`
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 export const Option = styled.View`
