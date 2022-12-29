@@ -1,11 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useTheme } from "styled-components/native";
+import goodFeedback from "../../assets/goodFeedback.png";
+import Button from "../../components/Button";
 import { Label } from "../../components/Ui/styles";
 import { Container, Img } from "./styles";
-import goodFeedback from "../../assets/goodFeedback.png";
-import badFeedback from "../../assets/badFeedback.png";
-import Button from "../../components/Button";
-import { useNavigation } from "@react-navigation/native";
 
 export default function Feedback() {
   const { COLORS, FONT_SIZE } = useTheme();
