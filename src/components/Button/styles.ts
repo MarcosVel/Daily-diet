@@ -13,7 +13,7 @@ export const Container = styled(TouchableOpacity)<Props>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 16px 24px;
   border-radius: 6px;
 
   ${({ theme, type }) => css`
@@ -36,4 +36,6 @@ export const Title = styled(Text)<Props>`
     font-size: ${theme.FONT_SIZE.SM}px;
     color: ${type === "PRIMARY" ? theme.COLORS.white : theme.COLORS.gray_200};
   `}
+
+  line-height: 18px;
 `;

@@ -25,7 +25,7 @@ export const RoundedContainer = styled.View`
   width: 100%;
   align-items: center;
   padding: 32px 24px;
-  background-color: ${({ theme }) => theme.COLORS.white};
+  background-color: ${({ theme }) => theme.COLORS.gray_700};
   margin-top: 24px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
