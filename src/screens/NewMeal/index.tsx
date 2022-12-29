@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Keyboard, ScrollView, TouchableWithoutFeedback } from "react-native";
 import Header from "../../components/Header";
@@ -7,6 +8,8 @@ import { RoundedContainer } from "../../components/Ui/styles";
 import { Container, CreateMeal, Date } from "./styles";
 
 export default function NewMeal() {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -29,7 +32,10 @@ export default function NewMeal() {
 
             <Options />
 
-            <CreateMeal title="Cadastrar refeição" />
+            <CreateMeal
+              title="Cadastrar refeição"
+              onPress={() => navigation.navigate("feedback")}
+            />
           </RoundedContainer>
         </TouchableWithoutFeedback>
       </ScrollView>
