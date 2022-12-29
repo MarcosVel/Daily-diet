@@ -11,6 +11,10 @@ export const Date = styled.View`
   flex-direction: row;
 `;
 
+export const Separator = styled.View`
+  width: 20px;
+`;
+
 export const CreateMeal = styled(Button)`
   width: 100%;
   margin-top: auto;

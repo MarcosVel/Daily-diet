@@ -1,11 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useCallback } from "react";
+import { Alert } from "react-native";
 import { useTheme } from "styled-components/native";
 import logoImg from "../../assets/logo.png";
 import Button from "../../components/Button";
 import Meal from "../../components/Meal";
 import { Label } from "../../components/Ui/styles";
+import { getAllMeals } from "../../storage/getAllMeals";
 import {
   AddMeal,
   Container,
@@ -20,6 +22,22 @@ import {
 export default function Home() {
   const { COLORS, FONT_SIZE } = useTheme();
   const navigation = useNavigation();
+
+  async function fetchMeals() {
+    try {
+      const meals = await getAllMeals();
+      console.log(meals);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Ops", "Não foi possível buscar suas refeições.");
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [])
+  );
 
   const DATA = [
     {

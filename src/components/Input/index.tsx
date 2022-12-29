@@ -14,7 +14,7 @@ export default function Input({ label, multiline, mask, ...rest }: Props) {
   const { FONT_SIZE } = useTheme();
 
   return (
-    <Container {...rest}>
+    <Container>
       <Label bold size={FONT_SIZE.SM}>
         {label}
       </Label>
@@ -25,12 +25,14 @@ export default function Input({ label, multiline, mask, ...rest }: Props) {
           onChangeText={() => {}}
           keyboardType="numeric"
           style={MaskedInput}
+          {...rest}
         />
       ) : (
         <InputText
           multiline={multiline}
           numberOfLines={multiline ? 4 : 1}
           style={{ textAlignVertical: multiline ? "top" : "center" }}
+          {...rest}
         />
       )}
     </Container>
