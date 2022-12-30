@@ -9,6 +9,6 @@ export async function getAllMeals() {
 
     return meals;
   } catch (error) {
-    console.log(error);
+    console.log("Error in getAllMeals: ", error);
   }
 }

@@ -23,11 +23,15 @@ export default function NewMeal() {
 
   async function handleAddMeal() {
     const newMeal = {
-      meal,
-      description,
-      date,
-      hour,
-      diet,
+      title: date,
+      data: [
+        {
+          meal,
+          description,
+          hour,
+          diet,
+        },
+      ],
     };
 
     try {
@@ -42,7 +46,10 @@ export default function NewMeal() {
 
   return (
     <Container>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
         <Header title="Nova refeição" />
 
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

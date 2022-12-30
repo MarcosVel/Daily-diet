@@ -1,16 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { useTheme } from "styled-components/native";
 import logoImg from "../../assets/logo.png";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import Meal from "../../components/Meal";
 import { Label } from "../../components/Ui/styles";
 import { getAllMeals } from "../../storage/getAllMeals";
 import {
   AddMeal,
   Container,
+  EmptyList,
   Logo,
   MealsList,
   Open,
@@ -22,14 +24,20 @@ import {
 export default function Home() {
   const { COLORS, FONT_SIZE } = useTheme();
   const navigation = useNavigation();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function fetchMeals() {
     try {
+      setLoading(true);
       const meals = await getAllMeals();
-      console.log(meals);
+
+      setData(meals);
     } catch (error) {
       console.log(error);
       Alert.alert("Ops", "Não foi possível buscar suas refeições.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -39,30 +47,7 @@ export default function Home() {
     }, [])
   );
 
-  const DATA = [
-    {
-      title: "12.08.22",
-      data: [
-        { hour: "20:00", meal: "X-tudo" },
-        { hour: "16:00", meal: "Whey protein com leite" },
-        {
-          hour: "13:30",
-          meal: "Salada cesar com frango grelhadinho com molho especial",
-        },
-        { hour: "12:30", meal: "Salada cesar com frango grelhado" },
-        { hour: "09:55", meal: "Vitamina de banana com abacate" },
-      ],
-    },
-    {
-      title: "11.08.22",
-      data: [
-        { hour: "20:00", meal: "X-tudo" },
-        { hour: "16:00", meal: "Whey protein com leite" },
-        { hour: "12:30", meal: "Salada cesar com frango grelhado" },
-        { hour: "09:55", meal: "Vitamina de banana com abacate" },
-      ],
-    },
-  ];
+  console.log(data);
 
   const renderHeader = () => (
     <>
@@ -91,20 +76,34 @@ export default function Home() {
     </>
   );
 
+  const renderEmptyList = () => (
+    <>
+      <Label bold color={COLORS.gray_100}>
+        Acabou de comer algo?
+      </Label>
+      <Label color={COLORS.gray_100}>Nos conte qual foi sua refeição.</Label>
+    </>
+  );
+
   return (
     <Container>
-      <MealsList
-        sections={DATA}
-        keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <Meal hour={item.hour} meal={item.meal} />}
-        renderSectionHeader={({ section }) => (
-          <SectionTitle>{section.title}</SectionTitle>
-        )}
-        renderSectionFooter={() => <SectionFooterSeparator />}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={renderHeader}
-        ListHeaderComponentStyle={{ paddingTop: 24 }}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <MealsList
+          sections={data}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({ item }) => <Meal hour={item.hour} meal={item.meal} />}
+          renderSectionHeader={({ section }) => (
+            <SectionTitle>{section.title}</SectionTitle>
+          )}
+          renderSectionFooter={() => <SectionFooterSeparator />}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={renderHeader}
+          ListHeaderComponentStyle={{ paddingTop: 24 }}
+          ListEmptyComponent={() => renderEmptyList()}
+        />
+      )}
     </Container>
   );
 }
