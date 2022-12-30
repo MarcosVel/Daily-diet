@@ -5,9 +5,10 @@ import { Container, Dot, Hour, MealTitle, Separator } from "./styles";
 type Props = {
   hour: string;
   meal: string;
+  diet: string;
 };
 
-export default function Meal({ hour, meal }: Props) {
+export default function Meal({ hour, meal, diet }: Props) {
   const { FONT_SIZE } = useTheme();
 
   return (
@@ -17,7 +18,7 @@ export default function Meal({ hour, meal }: Props) {
       <MealTitle size={FONT_SIZE.MD} numberOfLines={1}>
         {meal}
       </MealTitle>
-      <Dot />
+      <Dot diet={diet} />
     </Container>
   );
 }

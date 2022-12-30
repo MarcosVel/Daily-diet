@@ -23,7 +23,7 @@ export default function Options({ setDiet }: Props) {
           style={{ marginRight: 8 }}
           yesSelected={yesSelected}
           onPress={() => [
-            setYesSelected(!yesSelected),
+            setYesSelected(true),
             setNoSelected(false),
             setDiet("yes"),
           ]}
@@ -36,7 +36,7 @@ export default function Options({ setDiet }: Props) {
         <Type
           noSelected={noSelected}
           onPress={() => [
-            setNoSelected(!noSelected),
+            setNoSelected(true),
             setYesSelected(false),
             setDiet("no"),
           ]}

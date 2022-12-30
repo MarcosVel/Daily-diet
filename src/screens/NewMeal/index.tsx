@@ -34,9 +34,13 @@ export default function NewMeal() {
       ],
     };
 
+    if ([meal, description, date, hour, diet].includes("")) {
+      return Alert.alert("Campos incompletos", "Complete todos os campos.");
+    }
+
     try {
       await addMeal(newMeal).then(() => {
-        navigation.navigate("feedback");
+        return navigation.navigate("feedback", { diet });
       });
     } catch (error) {
       console.log(error);

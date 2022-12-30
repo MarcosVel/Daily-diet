@@ -9,10 +9,10 @@ import Loading from "../../components/Loading";
 import Meal from "../../components/Meal";
 import { Label } from "../../components/Ui/styles";
 import { getAllMeals } from "../../storage/getAllMeals";
+import { MealStorageDTO } from "../../storage/MealStorageDTO";
 import {
   AddMeal,
   Container,
-  EmptyList,
   Logo,
   MealsList,
   Open,
@@ -32,7 +32,12 @@ export default function Home() {
       setLoading(true);
       const meals = await getAllMeals();
 
-      setData(meals);
+      setData(
+        meals.sort(
+          (a: MealStorageDTO, b: MealStorageDTO) =>
+            parseFloat(b.title) - parseFloat(a.title)
+        )
+      );
     } catch (error) {
       console.log(error);
       Alert.alert("Ops", "Não foi possível buscar suas refeições.");
@@ -47,7 +52,17 @@ export default function Home() {
     }, [])
   );
 
-  console.log(data);
+  // console.log(data.sort((a, b) => parseFloat(b.title) - parseFloat(a.title)));
+
+  // console.log(
+  // data
+  //   .sort((a, b) => parseFloat(b.title) - parseFloat(a.title))
+  //   .map((item: any) => {
+  //     return item.data
+  //       .map(item => item.hour)
+  //       .sort((a: any, b: any) => parseFloat(b) - parseFloat(a));
+  //   });
+  // );
 
   const renderHeader = () => (
     <>
@@ -93,7 +108,9 @@ export default function Home() {
         <MealsList
           sections={data}
           keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Meal hour={item.hour} meal={item.meal} />}
+          renderItem={({ item }) => (
+            <Meal hour={item.hour} meal={item.meal} diet={item.diet} />
+          )}
           renderSectionHeader={({ section }) => (
             <SectionTitle>{section.title}</SectionTitle>
           )}
