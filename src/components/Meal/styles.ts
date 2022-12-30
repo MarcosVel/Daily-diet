@@ -2,6 +2,10 @@ import styled, { css } from "styled-components/native";
 import theme from "../../theme";
 import { Label } from "../Ui/styles";
 
+type DotProps = {
+  diet: string;
+};
+
 export const Container = styled.View`
   flex-direction: row;
   align-items: center;
@@ -30,10 +34,11 @@ export const MealTitle = styled(Label)`
   margin-right: 8px;
 `;
 
-export const Dot = styled.View`
+export const Dot = styled.View<DotProps>`
   width: 14px;
   height: 14px;
-  background-color: ${theme.COLORS.green_mid};
+  background-color: ${({ theme, diet }) =>
+    diet === "yes" ? theme.COLORS.green_mid : theme.COLORS.red_mid};
   border-radius: 8px;
   margin-left: auto;
 `;
