@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import moment from "moment";
 import React, { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { useTheme } from "styled-components/native";
@@ -32,12 +33,13 @@ export default function Home() {
       setLoading(true);
       const meals = await getAllMeals();
 
-      setData(
-        meals.sort(
-          (a: MealStorageDTO, b: MealStorageDTO) =>
-            parseFloat(b.title) - parseFloat(a.title)
-        )
+      meals.sort((a: MealStorageDTO, b: MealStorageDTO) =>
+        moment(a.title, "DD/MM/YYYY").isAfter(moment(b.title, "DD/MM/YYYY"))
+          ? -1
+          : 1
       );
+
+      setData(meals);
     } catch (error) {
       console.log(error);
       Alert.alert("Ops", "Não foi possível buscar suas refeições.");
@@ -51,8 +53,6 @@ export default function Home() {
       fetchMeals();
     }, [])
   );
-
-  // console.log(data.sort((a, b) => parseFloat(b.title) - parseFloat(a.title)));
 
   // console.log(
   // data
