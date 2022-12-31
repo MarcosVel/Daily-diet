@@ -14,7 +14,10 @@ export default function Header({ title }: Props) {
 
   return (
     <Container>
-      <GoBack onPress={() => navigation.goBack()}>
+      <GoBack
+        onPress={() => navigation.goBack()}
+        hitSlop={{ top: 10, right: 30, left: 10, bottom: 40 }}
+      >
         <Icon name="arrow-left" size={24} />
       </GoBack>
       <Label bold size={FONT_SIZE.LG} color={COLORS.gray_100}>
