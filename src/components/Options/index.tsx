@@ -14,7 +14,7 @@ export default function Options({ setDiet }: Props) {
 
   return (
     <Container>
-      <Label bold size={FONT_SIZE.SM}>
+      <Label bold size={FONT_SIZE.SM} mb={2}>
         Está dentro da dieta?
       </Label>
 

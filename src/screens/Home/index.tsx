@@ -39,6 +39,15 @@ export default function Home() {
           : 1
       );
 
+      // order meals of a day
+      for (let item of meals) {
+        let itemData = item.data;
+
+        itemData.sort(
+          (a: any, b: any) => parseFloat(a.hour) - parseFloat(b.hour)
+        );
+      }
+
       setData(meals);
     } catch (error) {
       console.log(error);
@@ -53,16 +62,6 @@ export default function Home() {
       fetchMeals();
     }, [])
   );
-
-  // console.log(
-  // data
-  //   .sort((a, b) => parseFloat(b.title) - parseFloat(a.title))
-  //   .map((item: any) => {
-  //     return item.data
-  //       .map(item => item.hour)
-  //       .sort((a: any, b: any) => parseFloat(b) - parseFloat(a));
-  //   });
-  // );
 
   const renderHeader = () => (
     <>
