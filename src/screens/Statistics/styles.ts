@@ -28,7 +28,7 @@ export const Card = styled.View<CardProps>`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme, color }) => color || theme.COLORS.gray_600};
-  padding: 16px;
+  padding: 16px 24px;
   border-radius: 8px;
   margin-bottom: 12px;
   flex-shrink: 1;
