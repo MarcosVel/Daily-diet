@@ -6,27 +6,36 @@ import { useTheme } from "styled-components/native";
 import Loading from "../../components/Loading";
 import { Label, RoundedContainer } from "../../components/Ui/styles";
 import { statisticsMeals } from "../../storage/statisticsMeals";
+import porcentageInDiet from "../../utils/porcentageInDiet";
 import { Card, Container, Diet, GoBack, Stats } from "./styles";
 
-type Props = {
+type DataProps = {
   rowMealsDiet: number;
   registeredMeals: number;
   mealsInsideDiet: number;
   mealsOutsideDiet: number;
 };
 
+type InDietProps = {
+  porcentage: number;
+  downFifty: boolean;
+};
+
 export default function Statistics() {
   const { FONT_SIZE, COLORS } = useTheme();
   const navigation = useNavigation();
-  const [data, setData] = useState<Props>();
+  const [data, setData] = useState<DataProps>();
   const [loading, setLoading] = useState(false);
+  const [inDiet, setInDiet] = useState<InDietProps>();
 
   async function getStatistics() {
     try {
       setLoading(true);
       const stats = await statisticsMeals();
+      const data = await porcentageInDiet();
 
       setData(stats);
+      setInDiet(data);
     } catch (error) {
       console.log(error);
       Alert.alert("Ops", "Não foi possível buscar as estatísticas.");
@@ -40,13 +49,17 @@ export default function Statistics() {
   }, []);
 
   return (
-    <Container>
+    <Container downFifty={inDiet?.downFifty}>
       {loading ? (
         <Loading />
       ) : (
         <>
           <GoBack onPress={() => navigation.goBack()}>
-            <Feather name="arrow-left" size={24} color={COLORS.green_dark} />
+            <Feather
+              name="arrow-left"
+              size={24}
+              color={inDiet?.downFifty ? COLORS.red_dark : COLORS.green_dark}
+            />
           </GoBack>
 
           <Stats>
@@ -57,7 +70,7 @@ export default function Statistics() {
               mb={2}
               bold
             >
-              90,86%
+              {inDiet?.porcentage}%
             </Label>
             <Label size={FONT_SIZE.SM}>das refeições dentro da dieta</Label>
           </Stats>
