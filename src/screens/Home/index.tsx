@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import moment from "moment";
 import React, { useCallback, useState } from "react";
 import { Alert } from "react-native";
 import { useTheme } from "styled-components/native";
@@ -10,7 +9,6 @@ import Loading from "../../components/Loading";
 import Meal from "../../components/Meal";
 import { Label } from "../../components/Ui/styles";
 import { getAllMeals } from "../../storage/getAllMeals";
-import { MealStorageDTO } from "../../storage/MealStorageDTO";
 import {
   AddMeal,
   Container,
@@ -31,22 +29,8 @@ export default function Home() {
   async function fetchMeals() {
     try {
       setLoading(true);
+
       const meals = await getAllMeals();
-
-      meals.sort((a: MealStorageDTO, b: MealStorageDTO) =>
-        moment(a.title, "DD/MM/YYYY").isAfter(moment(b.title, "DD/MM/YYYY"))
-          ? -1
-          : 1
-      );
-
-      // order meals of a day
-      for (let item of meals) {
-        let itemData = item.data;
-
-        itemData.sort(
-          (a: any, b: any) => parseFloat(a.hour) - parseFloat(b.hour)
-        );
-      }
 
       setData(meals);
     } catch (error) {
