@@ -1,10 +1,35 @@
 import { getAllMeals } from "./getAllMeals";
+import { MealStorageDTO } from "./MealStorageDTO";
 
 export async function statisticsMeals() {
   try {
     const allMeals = await getAllMeals();
 
-    const dataMap = allMeals.map(item => item.data.map(itemData => itemData));
+    const dataMap = allMeals.map((item: MealStorageDTO) =>
+      item.data.map(itemData => itemData)
+    );
+
+    const dataArrayMap = dataMap.map(item => item);
+
+    const flatMap = dataArrayMap.flat();
+
+    function rowInsideDiet() {
+      const dietFlat = flatMap.map(item => item.diet);
+
+      let maxInRow = 0;
+      let streak = 0;
+
+      for (const element of dietFlat) {
+        if (element === "yes") {
+          streak++;
+          maxInRow = Math.max(maxInRow, streak);
+        } else {
+          streak = 0;
+        }
+      }
+
+      return maxInRow;
+    }
 
     function countRegisteredMeals() {
       const dataArrayMapLength = dataMap.map(item => item.length);
@@ -18,9 +43,6 @@ export async function statisticsMeals() {
     }
 
     function countInsideAndOutDiet() {
-      const dataArrayMap = dataMap.map(item => item);
-      const flatMap = dataArrayMap.flat();
-
       const mealsInside = flatMap.filter(item => item.diet === "yes").length;
 
       const mealsOutside = flatMap.filter(item => item.diet === "no").length;
@@ -31,9 +53,10 @@ export async function statisticsMeals() {
     const { mealsInside, mealsOutside } = countInsideAndOutDiet();
 
     const statistics = {
+      rowMealsDiet: rowInsideDiet() || 0,
       registeredMeals: countRegisteredMeals() || 0,
-      mealsInsideDiet: mealsInside,
-      mealsOutsideDiet: mealsOutside,
+      mealsInsideDiet: mealsInside || 0,
+      mealsOutsideDiet: mealsOutside || 0,
     };
 
     return statistics;

@@ -9,6 +9,7 @@ import { statisticsMeals } from "../../storage/statisticsMeals";
 import { Card, Container, Diet, GoBack, Stats } from "./styles";
 
 type Props = {
+  rowMealsDiet: number;
   registeredMeals: number;
   mealsInsideDiet: number;
   mealsOutsideDiet: number;
@@ -37,8 +38,6 @@ export default function Statistics() {
   useEffect(() => {
     getStatistics();
   }, []);
-
-  console.log(data);
 
   return (
     <Container>
@@ -70,7 +69,7 @@ export default function Statistics() {
 
             <Card>
               <Label size={FONT_SIZE.XL} color={COLORS.gray_100} mb={8} bold>
-                22
+                {data?.rowMealsDiet}
               </Label>
               <Label size={FONT_SIZE.SM}>
                 melhor sequência de pratos dentro da dieta
