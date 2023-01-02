@@ -9,12 +9,14 @@ type Props = {
 };
 
 export const Container = styled(TouchableOpacity)<Props>`
+  width: 100%;
   height: 50px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 14px 24px;
   border-radius: 6px;
+  flex-shrink: 1;
 
   ${({ theme, type }) => css`
     border: 1px solid ${theme.COLORS.gray_200};
