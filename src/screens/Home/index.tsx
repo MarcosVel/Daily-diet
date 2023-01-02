@@ -103,7 +103,22 @@ export default function Home() {
           sections={data}
           keyExtractor={(item, index) => item + index}
           renderItem={({ item }) => (
-            <Meal hour={item.hour} meal={item.meal} diet={item.diet} />
+            <Meal
+              hour={item.hour}
+              meal={item.meal}
+              diet={item.diet}
+              onPress={() =>
+                navigation.navigate("meal", {
+                  item: {
+                    meal: item.meal,
+                    description: item.description,
+                    hour: item.hour,
+                    date: item.date,
+                    diet: item.diet,
+                  },
+                })
+              }
+            />
           )}
           renderSectionHeader={({ section }) => (
             <SectionTitle>{section.title}</SectionTitle>

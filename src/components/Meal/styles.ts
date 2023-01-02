@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 import theme from "../../theme";
 import { Label } from "../Ui/styles";
@@ -6,7 +7,9 @@ type DotProps = {
   diet: string;
 };
 
-export const Container = styled.View`
+export const Container = styled(TouchableOpacity).attrs(() => ({
+  activeOpacity: 0.5,
+}))`
   flex-direction: row;
   align-items: center;
   padding: 14px 12px 14px 16px;
