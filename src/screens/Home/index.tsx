@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 import Meal from "../../components/Meal";
 import { Label } from "../../components/Ui/styles";
 import { getAllMeals } from "../../storage/getAllMeals";
+import porcentageInDiet, { InDietProps } from "../../utils/porcentageInDiet";
 import {
   AddMeal,
   Container,
@@ -25,14 +26,17 @@ export default function Home() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [inDiet, setInDiet] = useState<InDietProps>();
 
   async function fetchMeals() {
     try {
       setLoading(true);
 
       const meals = await getAllMeals();
+      const data = await porcentageInDiet();
 
       setData(meals);
+      setInDiet(data);
     } catch (error) {
       console.log(error);
       Alert.alert("Ops", "Não foi possível buscar suas refeições.");
@@ -51,12 +55,19 @@ export default function Home() {
     <>
       <Logo source={logoImg} />
 
-      <Statistic onPress={() => navigation.navigate("statistics")}>
+      <Statistic
+        downFifty={inDiet?.downFifty}
+        onPress={() => navigation.navigate("statistics")}
+      >
         <Open>
-          <Ionicons name="open-outline" size={24} color={COLORS.green_dark} />
+          <Ionicons
+            name="open-outline"
+            size={24}
+            color={inDiet?.downFifty ? COLORS.red_dark : COLORS.green_dark}
+          />
         </Open>
         <Label size={FONT_SIZE.XG} color={COLORS.gray_100} mb={2} bold>
-          90,86%
+          {inDiet?.porcentage}%
         </Label>
         <Label size={FONT_SIZE.SM}>das refeições dentro da dieta</Label>
       </Statistic>

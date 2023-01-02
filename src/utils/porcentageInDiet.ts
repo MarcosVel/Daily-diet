@@ -1,5 +1,10 @@
 import { statisticsMeals } from "../storage/statisticsMeals";
 
+export type InDietProps = {
+  porcentage: number;
+  downFifty: boolean;
+};
+
 export default async function porcentageInDiet() {
   const { mealsInsideDiet, registeredMeals } = await statisticsMeals();
 

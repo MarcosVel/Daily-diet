@@ -6,7 +6,7 @@ import { useTheme } from "styled-components/native";
 import Loading from "../../components/Loading";
 import { Label, RoundedContainer } from "../../components/Ui/styles";
 import { statisticsMeals } from "../../storage/statisticsMeals";
-import porcentageInDiet from "../../utils/porcentageInDiet";
+import porcentageInDiet, { InDietProps } from "../../utils/porcentageInDiet";
 import { Card, Container, Diet, GoBack, Stats } from "./styles";
 
 type DataProps = {
@@ -14,11 +14,6 @@ type DataProps = {
   registeredMeals: number;
   mealsInsideDiet: number;
   mealsOutsideDiet: number;
-};
-
-type InDietProps = {
-  porcentage: number;
-  downFifty: boolean;
 };
 
 export default function Statistics() {
@@ -31,6 +26,7 @@ export default function Statistics() {
   async function getStatistics() {
     try {
       setLoading(true);
+
       const stats = await statisticsMeals();
       const data = await porcentageInDiet();
 
