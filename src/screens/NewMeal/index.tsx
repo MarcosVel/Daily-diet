@@ -29,6 +29,7 @@ export default function NewMeal() {
           meal,
           description,
           hour,
+          date,
           diet,
         },
       ],

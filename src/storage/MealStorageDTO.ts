@@ -5,6 +5,7 @@ export type MealStorageDTO = {
       meal: string;
       description: string;
       hour: string;
+      date: string;
       diet: string;
     }
   ];
