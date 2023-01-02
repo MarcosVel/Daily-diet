@@ -1,6 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled, { css } from "styled-components/native";
 
+type StatsProps = {
+  downFifty: boolean;
+};
+
 export const Container = styled(SafeAreaView)`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.gray_700};
@@ -13,13 +17,14 @@ export const Logo = styled.Image`
 
 export const Statistic = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
-})`
+})<StatsProps>`
   margin: 32px 0 40px;
   align-items: center;
   justify-content: center;
   padding: 20px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.COLORS.green_light};
+  background-color: ${({ theme, downFifty }) =>
+    downFifty ? theme.COLORS.red_light : theme.COLORS.green_light};
 `;
 
 export const Open = styled.TouchableOpacity`

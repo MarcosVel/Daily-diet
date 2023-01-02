@@ -1,15 +1,20 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
+type ContainerProps = {
+  downFifty: boolean;
+};
+
 type CardProps = {
   color?: string;
 };
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled(SafeAreaView)<ContainerProps>`
   flex: 1;
   align-items: center;
   padding-top: 24px;
-  background-color: ${({ theme }) => theme.COLORS.green_light};
+  background-color: ${({ theme, downFifty }) =>
+    downFifty ? theme.COLORS.red_light : theme.COLORS.green_light};
 `;
 
 export const GoBack = styled.TouchableOpacity`
