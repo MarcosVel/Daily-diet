@@ -37,3 +37,8 @@ export const Bottom = styled.View`
   width: 100%;
   margin-top: auto;
 `;
+
+export const Buttons = styled.View`
+  width: 100%;
+  flex-direction: row;
+`;

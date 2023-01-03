@@ -19,6 +19,11 @@ export async function getAllMeals() {
     for (let item of orderedMeals) {
       let itemData = item.data;
 
+      if (itemData.length < 1) {
+        let index = orderedMeals.indexOf(item);
+        orderedMeals.splice(index, 1);
+      }
+
       itemData.sort(
         (a: any, b: any) => parseFloat(a.hour) - parseFloat(b.hour)
       );

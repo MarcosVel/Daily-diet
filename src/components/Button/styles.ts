@@ -6,10 +6,11 @@ export type ButtonTypeStyleProps = "PRIMARY" | "SECONDARY";
 
 type Props = {
   type: ButtonTypeStyleProps;
+  full?: boolean;
 };
 
 export const Container = styled(TouchableOpacity)<Props>`
-  width: 100%;
+  width: ${({ full }) => (full ? "100%" : "auto")};
   height: 50px;
   flex-direction: row;
   align-items: center;
