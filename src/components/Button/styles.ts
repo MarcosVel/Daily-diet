@@ -6,15 +6,18 @@ export type ButtonTypeStyleProps = "PRIMARY" | "SECONDARY";
 
 type Props = {
   type: ButtonTypeStyleProps;
+  full?: boolean;
 };
 
 export const Container = styled(TouchableOpacity)<Props>`
+  width: ${({ full }) => (full ? "100%" : "auto")};
   height: 50px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 14px 24px;
   border-radius: 6px;
+  flex-shrink: 1;
 
   ${({ theme, type }) => css`
     border: 1px solid ${theme.COLORS.gray_200};

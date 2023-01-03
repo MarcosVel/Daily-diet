@@ -9,9 +9,7 @@ export async function statisticsMeals() {
       item.data.map(itemData => itemData)
     );
 
-    const dataArrayMap = dataMap.map(item => item);
-
-    const flatMap = dataArrayMap.flat();
+    const flatMap = dataMap.flat();
 
     function rowInsideDiet() {
       const dietFlat = flatMap.map(item => item.diet);
