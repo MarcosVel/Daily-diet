@@ -3,7 +3,13 @@ export declare global {
     interface RootParamList {
       home: undefined;
       statistics: undefined;
-      newMeal: undefined;
+      newMeal: {
+        meal: string;
+        description: string;
+        hour: string;
+        date: string;
+        diet: string;
+      } | undefined;
       feedback: {
         diet: string;
       };

@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "styled-components/native";
 import { Label } from "../Ui/styles";
 import { Container, Icon, Option, Type } from "./styles";
 
 type Props = {
+  diet: string;
   setDiet: (type: string) => void;
 };
 
-export default function Options({ setDiet }: Props) {
+export default function Options({ diet, setDiet }: Props) {
   const { FONT_SIZE, COLORS } = useTheme();
-  const [yesSelected, setYesSelected] = useState(false);
-  const [noSelected, setNoSelected] = useState(false);
 
   return (
     <Container>
@@ -21,12 +20,8 @@ export default function Options({ setDiet }: Props) {
       <Option>
         <Type
           style={{ marginRight: 8 }}
-          yesSelected={yesSelected}
-          onPress={() => [
-            setYesSelected(true),
-            setNoSelected(false),
-            setDiet("yes"),
-          ]}
+          selected={diet === "yes" ? "yes" : ""}
+          onPress={() => setDiet("yes")}
         >
           <Icon name="dot-fill" size={16} color={COLORS.green_dark} />
           <Label bold size={FONT_SIZE.SM} color={COLORS.gray_100}>
@@ -34,12 +29,8 @@ export default function Options({ setDiet }: Props) {
           </Label>
         </Type>
         <Type
-          noSelected={noSelected}
-          onPress={() => [
-            setNoSelected(true),
-            setYesSelected(false),
-            setDiet("no"),
-          ]}
+          selected={diet === "no" ? "no" : ""}
+          onPress={() => setDiet("no")}
         >
           <Icon name="dot-fill" size={16} color={COLORS.red_dark} />
           <Label bold size={FONT_SIZE.SM} color={COLORS.gray_100}>

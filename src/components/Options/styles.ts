@@ -3,8 +3,7 @@ import { Octicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
 export type TypeProps = {
-  yesSelected?: boolean;
-  noSelected?: boolean;
+  selected: string;
 };
 
 export const Container = styled.View`
@@ -29,17 +28,17 @@ export const Type = styled(TouchableOpacity).attrs(() => ({
   padding: 16px;
   border-radius: 6px;
 
-  ${({ theme, yesSelected, noSelected }) =>
+  ${({ theme, selected }) =>
     css`
       border: 1px solid
-        ${yesSelected
+        ${selected === "yes"
           ? theme.COLORS.green_dark
-          : noSelected
+          : selected === "no"
           ? theme.COLORS.red_dark
           : theme.COLORS.gray_600};
-      background-color: ${yesSelected
+      background-color: ${selected === "yes"
         ? theme.COLORS.green_light
-        : noSelected
+        : selected === "no"
         ? theme.COLORS.red_light
         : theme.COLORS.gray_600};
     `}

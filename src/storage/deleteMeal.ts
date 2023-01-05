@@ -22,7 +22,8 @@ export async function DeleteMeal(meal: Props) {
           item =>
             item.meal !== meal.meal ||
             item.description !== meal.description ||
-            item.hour !== meal.hour
+            item.hour !== meal.hour ||
+            item.date !== meal.date
         )
       );
 
@@ -35,6 +36,6 @@ export async function DeleteMeal(meal: Props) {
     const newStorage = JSON.stringify(allMeals);
     await AsyncStorage.setItem(MEALS_COLLECTION, newStorage);
   } catch (error) {
-    console.log(error);
+    console.log("Error in DeleteMeal: ", error);
   }
 }
