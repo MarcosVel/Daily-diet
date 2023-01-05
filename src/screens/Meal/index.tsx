@@ -26,6 +26,10 @@ export default function Meal() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
+  function handleEdition() {
+    navigation.navigate("newMeal", { ...item });
+  }
+
   async function handleDeleteMeal() {
     try {
       await DeleteMeal(item).then(() => {
@@ -67,6 +71,7 @@ export default function Meal() {
               title="Editar refeição"
               icon="edit-3"
               style={{ marginBottom: 8 }}
+              onPress={() => handleEdition()}
             />
             <Button
               title="Excluir refeição"
