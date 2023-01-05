@@ -82,7 +82,7 @@ export default function NewMeal() {
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled"
       >
-        <Header title="Nova refeição" />
+        <Header title={item ? "Editar refeição" : "Nova refeição"} />
 
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <RoundedContainer>
