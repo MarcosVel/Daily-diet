@@ -19,7 +19,7 @@ type RouteParams = {
   description: string;
   hour: string;
   date: string;
-  diet: string;
+  diet: boolean | null;
 };
 
 export default function NewMeal() {
@@ -30,7 +30,7 @@ export default function NewMeal() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
-  const [diet, setDiet] = useState("");
+  const [diet, setDiet] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (item) {

@@ -7,7 +7,7 @@ type Props = {
   description: string;
   hour: string;
   date: string;
-  diet: string;
+  diet: boolean;
 };
 
 export async function EditMeal(oldMeal: Props, meal: MealStorageDTO) {

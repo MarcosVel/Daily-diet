@@ -5,7 +5,7 @@ import { Container, Dot, Hour, MealTitle, Separator } from "./styles";
 type Props = {
   hour: string;
   meal: string;
-  diet: string;
+  diet: boolean;
   onPress: () => void;
 };
 

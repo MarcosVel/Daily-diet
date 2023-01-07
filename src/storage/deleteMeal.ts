@@ -8,7 +8,7 @@ type Props = {
   description: string;
   hour: string;
   date: string;
-  diet: string;
+  diet: boolean;
 };
 
 export async function DeleteMeal(meal: Props) {
@@ -16,10 +16,10 @@ export async function DeleteMeal(meal: Props) {
     let allMeals = await getAllMeals();
 
     const filteredAllMeals = allMeals
-      .map((item: MealStorageDTO) => item.data.map(itemData => itemData))
-      .map(subarr =>
+      .map((item: MealStorageDTO) => item.data.map((itemData) => itemData))
+      .map((subarr) =>
         subarr.filter(
-          item =>
+          (item) =>
             item.meal !== meal.meal ||
             item.description !== meal.description ||
             item.hour !== meal.hour ||
