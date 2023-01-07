@@ -4,12 +4,13 @@ import { Label } from "../Ui/styles";
 import { Container, Icon, Option, Type } from "./styles";
 
 type Props = {
-  diet: string;
-  setDiet: (type: string) => void;
+  diet: boolean | null;
+  setDiet: (type: boolean) => void;
 };
 
 export default function Options({ diet, setDiet }: Props) {
   const { FONT_SIZE, COLORS } = useTheme();
+  const hasSelection = diet !== null;
 
   return (
     <Container>
@@ -20,8 +21,9 @@ export default function Options({ diet, setDiet }: Props) {
       <Option>
         <Type
           style={{ marginRight: 8 }}
-          selected={diet === "yes" ? "yes" : ""}
-          onPress={() => setDiet("yes")}
+          variant="green"
+          selected={hasSelection && diet}
+          onPress={() => setDiet(true)}
         >
           <Icon name="dot-fill" size={16} color={COLORS.green_dark} />
           <Label bold size={FONT_SIZE.SM} color={COLORS.gray_100}>
@@ -29,8 +31,9 @@ export default function Options({ diet, setDiet }: Props) {
           </Label>
         </Type>
         <Type
-          selected={diet === "no" ? "no" : ""}
-          onPress={() => setDiet("no")}
+          selected={hasSelection && !diet}
+          variant="red"
+          onPress={() => setDiet(false)}
         >
           <Icon name="dot-fill" size={16} color={COLORS.red_dark} />
           <Label bold size={FONT_SIZE.SM} color={COLORS.gray_100}>
