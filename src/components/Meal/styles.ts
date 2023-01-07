@@ -4,7 +4,7 @@ import theme from "../../theme";
 import { Label } from "../Ui/styles";
 
 type DotProps = {
-  diet: string;
+  diet: boolean;
 };
 
 export const Container = styled(TouchableOpacity).attrs(() => ({
@@ -41,7 +41,7 @@ export const Dot = styled.View<DotProps>`
   width: 14px;
   height: 14px;
   background-color: ${({ theme, diet }) =>
-    diet === "yes" ? theme.COLORS.green_mid : theme.COLORS.red_mid};
+    diet ? theme.COLORS.green_mid : theme.COLORS.red_mid};
   border-radius: 8px;
   margin-left: auto;
 `;

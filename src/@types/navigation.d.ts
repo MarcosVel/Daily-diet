@@ -3,15 +3,17 @@ export declare global {
     interface RootParamList {
       home: undefined;
       statistics: undefined;
-      newMeal: {
-        meal: string;
-        description: string;
-        hour: string;
-        date: string;
-        diet: string;
-      } | undefined;
+      newMeal:
+        | {
+            meal: string;
+            description: string;
+            hour: string;
+            date: string;
+            diet: boolean;
+          }
+        | undefined;
       feedback: {
-        diet: string;
+        diet: boolean;
       };
       meal: {
         item: {
@@ -19,7 +21,7 @@ export declare global {
           description: string;
           hour: string;
           date: string;
-          diet: string;
+          diet: boolean;
         };
       };
     }

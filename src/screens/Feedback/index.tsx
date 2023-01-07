@@ -8,7 +8,7 @@ import { Label } from "../../components/Ui/styles";
 import { Container, Img } from "./styles";
 
 type RouteParams = {
-  diet: string;
+  diet: boolean;
 };
 
 export default function Feedback() {
@@ -50,7 +50,5 @@ export default function Feedback() {
     </>
   );
 
-  return (
-    <Container>{diet === "yes" ? goodFeedback() : badFeedback()}</Container>
-  );
+  return <Container>{diet ? goodFeedback() : badFeedback()}</Container>;
 }

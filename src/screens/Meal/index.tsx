@@ -15,7 +15,7 @@ type RouteParams = {
     description: string;
     hour: string;
     date: string;
-    diet: string;
+    diet: boolean;
   };
 };
 
@@ -62,7 +62,7 @@ export default function Meal() {
           <Pin>
             <Dot diet={item.diet} />
             <Label color={COLORS.gray_100} size={FONT_SIZE.SM}>
-              {item.diet === "yes" ? "dentro da dieta" : "fora da dieta"}
+              {item.diet ? "dentro da dieta" : "fora da dieta"}
             </Label>
           </Pin>
 
